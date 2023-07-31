@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <input type="text" name="" id="input-text" />
+      <button id="btn">追加</button>
+      <ul id="todo-area"></ul>
+    </div>
+  </body>
+  <script>
+    const btnEl = document.querySelector('#btn');
+    btnEl.addEventListener('click', () => {
+      const inputEl = document.querySelector('#input-text');
+      const inputVal = inputEl.value;
+      if (!inputVal) return;
+
+      const liEl = document.createElement('li');
+      liEl.innerText = inputVal;
+
+      // 削除ボタン
+      const delBtnEl = document.createElement('button');
+      delBtnEl.innerText = '削除';
+      liEl.appendChild(delBtnEl);
+
+      // 削除処理
+      delBtnEl.addEventListener('click', (event) => {
+        const targetEl = event.target.parentElement;
+        targetEl.remove();
+      });
+
+      const ulEl = document.querySelector('#todo-area');
+      ulEl.appendChild(liEl);
+
+      inputEl.value = '';
+    });
+  </script>
+</html>
